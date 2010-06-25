@@ -1,0 +1,13 @@
+plugin.tx_elements {
+    settings {
+
+    }
+    persistence {
+        storagePid = {$plugin.tx_elements.persistence.storagePid}
+    }
+    view {
+        templateRootPath = {$plugin.tx_elements.view.templateRootPath}
+        partialRootPath = {$plugin.tx_elements.view.partialRootPath}
+        layoutRootPath = {$plugin.tx_elements.view.layoutRootPath}
+    }
+}
