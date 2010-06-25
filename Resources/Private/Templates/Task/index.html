@@ -1,0 +1,16 @@
+<f:layout name="default" />
+<f:section name="content">
+	<f:if condition="{tasks}">
+		<f:then>
+			Tasks:
+			<ul>>
+				<f:for each="{tasks}" as="task">
+					<li>{task.name}</li>
+				</f:for>
+			</ul>
+		</f:then>
+		<f:else>
+			No tasks available.
+		</f:else>
+	</f:if>
+</f:section>

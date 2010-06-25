@@ -34,5 +34,26 @@
  */
 class Tx_Elements_Controller_TaskController extends Tx_Extbase_MVC_Controller_ActionController {
 
+	/**
+	 * Init
+	 *
+	 * @param void
+	 * @return void
+	 */
+	public function initializeAction() {
+
+
+	}
+
+	/**
+	 * Index
+	 *
+	 * @param void
+	 * @return string
+	 */
+	public function indexAction() {
+		//$this->view->assign(
+	}
+
 }
 ?>
