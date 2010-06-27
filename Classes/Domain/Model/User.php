@@ -23,7 +23,7 @@
  ***************************************************************/
 
 /**
- * Task-Controller
+ * A user of our service.
  *
  * @version $Id:$
  * @package TYPO3
@@ -32,28 +32,7 @@
  * @author Stefan Isak <stefanisak@gmail.com>
  * @author Andreas Lappe <nd@off-pist.de>
  */
-class Tx_Elements_Controller_TaskController extends Tx_Elements_MVC_Controller_RESTController {
-
-	/**
-	 * Init
-	 *
-	 * @param void
-	 * @return void
-	 */
-	public function initializeAction() {
-
-
-	}
-
-	/**
-	 * Index
-	 *
-	 * @param void
-	 * @return string
-	 */
-	public function indexAction() {
-		//$this->view->assign(
-	}
+class Tx_Elements_Domain_Model_User extends Tx_Extbase_Domain_Model_FrontendUser { 
 
 }
 ?>

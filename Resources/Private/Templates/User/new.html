@@ -1,0 +1,12 @@
+<f:layout name="default" />
+<f:section name="content">
+	<f:form action="create" name="newUser" object="{newUser}">
+		<label for="username">Username:</label>
+		<f:form.textbox property="username" />
+
+		<label for="password">Password</label>
+		<f:form.password property="password" />
+
+		<f:form.submit value="Register me" />
+	</f:form>
+</f:section>

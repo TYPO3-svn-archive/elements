@@ -23,7 +23,7 @@
  ***************************************************************/
 
 /**
- * Task-Controller
+ * Extending the default ActionController for full restfulness.
  *
  * @version $Id:$
  * @package TYPO3
@@ -32,28 +32,38 @@
  * @author Stefan Isak <stefanisak@gmail.com>
  * @author Andreas Lappe <nd@off-pist.de>
  */
-class Tx_Elements_Controller_TaskController extends Tx_Elements_MVC_Controller_RESTController {
+class Tx_Elements_MVC_Controller_RestController extends Tx_Extbase_MVC_Controller_ActionController {
 
 	/**
-	 * Init
+	 * Override the standard method and take the HTTP-Actions
+	 * into account.
 	 *
-	 * @param void
-	 * @return void
+	 * @return string Methodname of the current action
 	 */
-	public function initializeAction() {
+	protected function resolveActionMethodName() {
 
-
-	}
-
-	/**
-	 * Index
-	 *
-	 * @param void
-	 * @return string
-	 */
-	public function indexAction() {
-		//$this->view->assign(
-	}
+		if ($this->request->getControllerActionName() === 'index') {
+			$actionName = 'index';
+			switch ($this->request->getMethod()) {
+				case 'GET' :
+					$actionName = ($this->request->hasArgument('id')) ? 'show' : 'index';
+				break;
+				case 'POST' :
+					$actionName = 'create';
+				break;
+				case 'PUT' :
+					if (!$this->request->hasArgument('id')) $this->throwStatus(400, NULL, 'Missing identifier');
+					$actionName = 'update';
+				break;
+				case 'DELETE' :
+					if (!$this->request->hasArgument('id')) $this->throwStatus(400, NULL, 'Missing identifier');
+					$actionName = 'delete';
+				break;
+			}
+			$this->request->setControllerActionName($actionName);
+		}
+		return parent::resolveActionMethodName();
+	}	
 
 }
 ?>

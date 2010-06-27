@@ -1,0 +1,13 @@
+digraph elements {
+
+	"User" -> "TaskRepository"
+	"User" -> "TagRepository"
+	"User" -> "ListRepository"
+
+	"TaskRepository" -> "Task1"
+	"TaskRepository" -> "Task2"
+
+
+
+
+}

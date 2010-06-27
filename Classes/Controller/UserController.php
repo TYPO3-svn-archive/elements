@@ -23,7 +23,7 @@
  ***************************************************************/
 
 /**
- * Task-Controller
+ * A user of our service.
  *
  * @version $Id:$
  * @package TYPO3
@@ -32,7 +32,12 @@
  * @author Stefan Isak <stefanisak@gmail.com>
  * @author Andreas Lappe <nd@off-pist.de>
  */
-class Tx_Elements_Controller_TaskController extends Tx_Elements_MVC_Controller_RESTController {
+class Tx_Elements_Controller_UserController extends Tx_Extbase_MVC_Controller_ActionController {
+
+	/**
+	 * @var Tx_Extbase_Domain_Repository_FrontendUserRepository
+	 */
+	protected $frontendUserRepository;
 
 	/**
 	 * Init
@@ -41,19 +46,33 @@ class Tx_Elements_Controller_TaskController extends Tx_Elements_MVC_Controller_R
 	 * @return void
 	 */
 	public function initializeAction() {
+		$this->frontendUserRepository = t3lib_div::makeInstance('Tx_Extbase_Domain_Repository_FrontendUserRepository');
+	}
 
+	public function indexAction() {
+		$this->view->assign('foo', NULL);
 
 	}
 
 	/**
-	 * Index
+	 * Show form to register
 	 *
-	 * @param void
+	 * @param Tx_Elements_Domain_Model_User $newUser
 	 * @return string
 	 */
-	public function indexAction() {
-		//$this->view->assign(
+	public function newAction(Tx_Elements_Domain_Model_User $newUser = NULL) {
+		$this->view->assign('newUser', $newUser);
 	}
 
+	/**
+	 * Create this new user
+	 *
+	 * @param Tx_Elements_Domain_Model_User $user
+	 * @return void
+	 */
+	public function createAction(Tx_Elements_Domain_Model_User $user) {
+		$this->frontendUserRepository->add($user);
+
+	}
 }
 ?>
