@@ -1,0 +1,60 @@
+
+#
+
+digraph elements {
+	ratio="fill";
+
+	"Elements" [shape=circle]
+
+	subgraph user {
+		rank=same
+		"User1" [shape=octagon];
+		"FrontendUser" [shape=box];
+		"User1"->"FrontendUser";
+
+		"User2" [shape=octagon];
+		"User2"->"FrontendUser";
+
+	}
+	subgraph lists {
+		title="Lists"
+		"List1" [shape=octagon];
+		"List2" [shape=octagon];
+		"List3" [shape=octagon];
+	}
+
+	subgraph tasks {
+		title="Tasks"
+		"Task1" [shape=octagon];
+		"Task2" [shape=octagon];
+		"Task3" [shape=octagon];
+	}
+
+	subgraph tags {
+		title="Tags";
+
+		"Tag1" [shape=octagon];
+		"Tag2" [shape=octagon];
+		"Tag3" [shape=octagon];
+	}
+
+
+	"Elements"->"User1";
+	"Elements"->"User2";
+
+	"User1"->"List1";
+	"User1"->"List2";
+	"User1"->"List3";
+
+	"List1"->"Task1";
+	"List1"->"Task2";
+	"List3"->"Task3";
+
+	"Task1"->"Tag1";
+	"Task1"->"Tag3";
+	"Task2"->"Tag3";
+	"Task3"->"Tag1";
+	"Task3"->"Tag2";
+
+
+}

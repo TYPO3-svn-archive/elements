@@ -35,14 +35,18 @@
 class Tx_Elements_Controller_TaskController extends Tx_Elements_MVC_Controller_RESTController {
 
 	/**
+	 * @var Tx_Elements_Domain_Repository_TaskRepository
+	 */
+	protected $taskRepository;
+
+	/**
 	 * Init
 	 *
 	 * @param void
 	 * @return void
 	 */
 	public function initializeAction() {
-
-
+		$this->taskRepository = t3lib_div::makeInstance('Tx_Elements_Domain_Repository_TaskRepository');
 	}
 
 	/**
@@ -52,7 +56,27 @@ class Tx_Elements_Controller_TaskController extends Tx_Elements_MVC_Controller_R
 	 * @return string
 	 */
 	public function indexAction() {
-		//$this->view->assign(
+		$this->view->assign('tasks', $this->taskRepository->findAll());
+	}
+
+	/**
+	 * Form for a new Task
+	 *
+	 * @param Tx_Elements_Domain_Model_Task $newTask
+	 * @return void
+	 */
+	public function newAction(Tx_Elements_Domain_Model_Task $newTask = NULL) {
+		$this->view->assign('newTask', $newTask);
+	}
+
+	/**
+	 * Create a task
+	 *
+	 * @param Tx_Elements_Domain_Model_Task $task
+	 * @return void
+	 */
+	public function createAction(Tx_Elements_Domain_Model_Task $task) {
+		$this->taskRepository->add($task);
 	}
 
 }

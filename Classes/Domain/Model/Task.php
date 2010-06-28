@@ -34,6 +34,32 @@
  */
 class Tx_Elements_Domain_Model_Task extends Tx_Extbase_DomainObject_AbstractEntity { 
 
+	/**
+	 * @var string
+	 */
+	protected $taskContent;
+
+
+	/**
+	 * Set taskContent
+	 *
+	 * @param string $taskContent
+	 * @return void
+	 */
+	public function setTaskContent($taskContent) {
+		$this->taskContent = $taskContent;
+	}
+
+	/**
+	 * Get taskContent
+	 *
+	 * @param void
+	 * @return string
+	 */
+	public function getTaskContent() {
+		return $this->taskContent;
+	}
+
 
 }
 ?>

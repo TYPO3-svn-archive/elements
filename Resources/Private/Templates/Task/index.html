@@ -1,11 +1,12 @@
 <f:layout name="default" />
 <f:section name="content">
+	<f:link.action action="new">Add a task</f:link.action>	
 	<f:if condition="{tasks}">
 		<f:then>
 			Tasks:
-			<ul>>
+			<ul>
 				<f:for each="{tasks}" as="task">
-					<li>{task.name}</li>
+					<li>{task.taskContent}</li>
 				</f:for>
 			</ul>
 		</f:then>
