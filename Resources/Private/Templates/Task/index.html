@@ -6,7 +6,7 @@
 			Tasks:
 			<ul>
 				<f:for each="{tasks}" as="task">
-					<li>{task.taskContent}</li>
+					<li>{task.taskContent} <f:link.action action="delete" arguments="{task : task}">[delete]</f:link.action></li>
 				</f:for>
 			</ul>
 		</f:then>

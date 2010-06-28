@@ -10,12 +10,12 @@ Tx_Extbase_Utility_Extension::configurePlugin(
 	$_EXTKEY,				// The extension name (in UpperCamelCase) or the extension key (in lower_underscore)
 	'first',					// A unique name of the plugin in UpperCamelCase
 	array(					// An array holding the controller-action-combinations that are accessible 
-		'Task' => 'index',      	// The first controller and its first action will be the default 
+		'Task' => 'index,new,create,delete',      	// The first controller and its first action will be the default 
 		'User' => 'index, new, create',
 	),
 	array(					// An array of non-cachable controller-action-combinations (they must already be enabled)
-		'User' => 'index, new, create',
-		'Task' => 'index'
+		'User' => 'index, new, create, delete',
+		'Task' => 'index, new, create'
 	)
 );
 ?>

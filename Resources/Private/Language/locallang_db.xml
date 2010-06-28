@@ -6,8 +6,9 @@
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
+			<label index="tx_elements_domain_model_task">Tasks</label>
+			<label index="tx_elements_domain_model_task.taskContent">Task</label>
 			<label index="pluginLabel">elements</label>
 		</languageKey>
 	</data>
 </T3locallang>
-

@@ -25,6 +25,8 @@
 /**
  * A basic task.
  *
+ * @entity
+ * @scope prototype
  * @version $Id:$
  * @package TYPO3
  * @subpackage Tx_Elements
