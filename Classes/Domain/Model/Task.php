@@ -57,6 +57,19 @@ class Tx_Elements_Domain_Model_Task extends Tx_Extbase_DomainObject_AbstractEnti
 	}
 
 	/**
+	 * Set UUID
+	 *
+	 * Normally you wouldn't override it, but we need it 
+	 * to artificially create objects later on... not pretty.
+	 *
+	 * @param string $uuid
+	 * @return void
+	 */
+	public function setUuid($uuid) {
+		$this->uuid = $uuid;
+	}
+
+	/**
 	 * Get UUID
 	 *
 	 * @param void
@@ -84,14 +97,6 @@ class Tx_Elements_Domain_Model_Task extends Tx_Extbase_DomainObject_AbstractEnti
 	 */
 	public function getTaskContent() {
 		return $this->taskContent;
-	}
-
-	/**
-	 * Get className
-	 *
-	 */
-	public function getClassName() {
-		return get_class($this);
 	}
 
 }

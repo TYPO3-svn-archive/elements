@@ -47,8 +47,23 @@ class Tx_Elements_Utility_JsonTest extends Tx_Extbase_BaseTestCase {
 	 */
 	public function testObjectToArrayConversion() {
 		$correctOutput = '{"username":"","password":"","usergroups":{},"name":"Elements Conversion Test","firstName":null,"middleName":null,"lastName":null,"address":"","telephone":"","fax":"","email":"","lockToDomain":"","title":"","zip":"","city":"","country":"","www":"","company":"","image":"","lastLogin":null,"isOnline":"","uid":null}';
-
 		$this->assertEquals($correctOutput, json_encode(Tx_Elements_Utility_Json::getObjectAsArray($this->exampleObject), JSON_FORCE_OBJECT));
+	}
+
+	/**
+	 * Test to convert a json array back to a task object
+	 *
+	 * @test
+	 */
+	public function testArrayToTaskObjectConversion() {
+		$jsonInput = '{"uuid":"6f860516-a282-4166-ac8f-4f8553eca296","taskContent":"Conversion Test","uid":null}';
+		$objFromJson = Tx_Elements_Utility_Json::getArrayAsObject('Tx_Elements_Domain_Model_Task', json_decode($jsonInput));
+
+		$task = t3lib_div::makeInstance('Tx_Elements_Domain_Model_Task');
+		$task->setUuid('6f860516-a282-4166-ac8f-4f8553eca296');
+		$task->setTaskContent('Conversion Test');
+
+		$this->assertEquals($objFromJson, $task);
 	}
 
 

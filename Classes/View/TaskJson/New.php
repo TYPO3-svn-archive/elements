@@ -23,7 +23,7 @@
  ***************************************************************/
 
 /**
- * Helper class for JSON-related output/input
+ * Render JSON
  *
  * @version $Id:$
  * @package TYPO3
@@ -32,46 +32,28 @@
  * @author Stefan Isak <stefanisak@gmail.com>
  * @author Andreas Lappe <nd@off-pist.de>
  */
-class Tx_Elements_Utility_Json {
+class Tx_Elements_View_TaskJson_New extends Tx_Extbase_MVC_View_AbstractView {
 
 	/**
-	 * Get all methods starting with get* as they should be
-	 * public getters, add the appropriate property to our array
-	 * and set the value to the result of the get* method.
+	 * Render 
 	 *
-	 * @param mixed $object
-	 * @return array
+	 * @param void
+	 * @return string JSON
 	 */
-	static public function getObjectAsArray($object) {
-		$publicObject = Array();
-		$methods = get_class_methods(get_class($object));
-		foreach($methods as $method) {
-			if(preg_match('/^get.*/', $method)) {
-				$propertyName = lcfirst(preg_replace('/^get(.*)$/', '\1', $method));
-				$publicObject[$propertyName] = $object->$method();
-			}
-		}
-		return $publicObject;
+	public function render() {
+		return json_encode(Tx_Elements_Utility_Json::getObjectAsArray($this->task), JSON_FORCE_OBJECT);
 	}
 
 	/**
-	 * Get Array as Object
+	 * Why is this one not inherited?
 	 *
-	 * @param string $className
-	 * @param array $objectArray
-	 * @return mixed
+	 * @param string $name
+	 * @param mixed $value
+	 * @return void
 	 */
-	static public function getArrayAsObject($className, $objectArray) {
-		$object = t3lib_div::makeInstance($className);
-		foreach($objectArray as $property => $value) {
-			if($property !== 'uid') { // There's no magic setUid and I didn't write one yet.
-				$method = 'set'.ucfirst($property);
-				$object->$method($value);
-			}
-		}
-		return $object;
+	public function assign($name, $value) {
+		$this->$name = $value;
 	}
-		
 
 }
 ?>

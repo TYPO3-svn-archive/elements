@@ -35,6 +35,26 @@
  */
 class Tx_Elements_Controller_TaskJsonController extends Tx_Elements_Controller_TaskController {
 
+	/**
+	 * New Task
+	 *
+	 * @param void
+	 * @return void
+	 */
+	public function newAction() {
+		$this->view->assign('task', t3lib_div::makeInstance('Tx_Elements_Domain_Model_Task'));
+	}
+
+	/**
+	 * Create a task
+	 *
+	 * @param string $task
+	 * @return void
+	 */
+	public function createAction($task) {
+		$plainObject = Tx_Elements_Utility_Json::getArrayAsObject('Tx_Elements_Domain_Model_Task', json_decode($task));
+		parent::createAction($plainObject);
+	}
 
 }
 ?>
