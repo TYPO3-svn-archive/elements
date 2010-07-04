@@ -9,6 +9,9 @@
 			<label index="tx_elements_domain_model_task">Tasks</label>
 			<label index="tx_elements_domain_model_task.uuid">UUID</label>
 			<label index="tx_elements_domain_model_task.taskContent">Task</label>
+			<label index="tx_elements_domain_model_tag">Tags</label>
+			<label index="tx_elements_domain_model_tag.uuid">UUID</label>
+			<label index="tx_elements_domain_model_tag.name">Name</label>
 			<label index="pluginLabel">elements</label>
 		</languageKey>
 	</data>

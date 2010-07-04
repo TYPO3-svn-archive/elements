@@ -33,4 +33,25 @@ $TCA['tx_elements_domain_model_task'] = array (
 	)
 );
 
+t3lib_extMgm::allowTableOnStandardPages('tx_elements_domain_model_tag');
+$TCA['tx_elements_domain_model_tag'] = array (
+	'ctrl' => array (
+		'title'             => 'LLL:EXT:elements/Resources/Private/Language/locallang_db.xml:tx_elements_domain_model_tag',
+		'label' 			=> 'name',
+		'tstamp' 			=> 'tstamp',
+		'crdate' 			=> 'crdate',
+		'versioningWS' 		=> 2,
+		'versioning_followPages'	=> true,
+		'origUid' 			=> 't3_origuid',
+		'languageField' 	=> 'sys_language_uid',
+		'transOrigPointerField' 	=> 'l18n_parent',
+		'transOrigDiffSourceField' 	=> 'l18n_diffsource',
+		'delete' 			=> 'deleted',
+		'enablecolumns' 	=> array(
+			'disabled' => 'hidden'
+			),
+		'dynamicConfigFile' => t3lib_extMgm::extPath($_EXTKEY) . 'Configuration/TCA/tca.php',
+		'iconfile' 			=> t3lib_extMgm::extRelPath($_EXTKEY) . 'Resources/Public/Icons/icon_tx_elements_domain_model_tag.png'
+	)
+);
 ?>

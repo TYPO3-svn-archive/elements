@@ -23,7 +23,7 @@
  ***************************************************************/
 
 /**
- * Task-Controller
+ * Tag-Controller
  *
  * @version $Id$
  * @package TYPO3
@@ -32,12 +32,12 @@
  * @author Stefan Isak <stefanisak@gmail.com>
  * @author Andreas Lappe <nd@off-pist.de>
  */
-class Tx_Elements_Controller_TaskController extends Tx_Elements_MVC_Controller_RESTController {
+class Tx_Elements_Controller_TagController extends Tx_Elements_MVC_Controller_RESTController {
 
 	/**
-	 * @var Tx_Elements_Domain_Repository_TaskRepository
+	 * @var Tx_Elements_Domain_Repository_TagRepository
 	 */
-	protected $taskRepository;
+	protected $tagRepository;
 
 	/**
 	 * Init
@@ -46,50 +46,50 @@ class Tx_Elements_Controller_TaskController extends Tx_Elements_MVC_Controller_R
 	 * @return void
 	 */
 	public function initializeAction() {
-		$this->taskRepository = t3lib_div::makeInstance('Tx_Elements_Domain_Repository_TaskRepository');
+		$this->tagRepository = t3lib_div::makeInstance('Tx_Elements_Domain_Repository_TagRepository');
 	}
 
 	/**
 	 * Index
 	 *
 	 * @param void
-	 * @return string
+	 * @return void
 	 */
 	public function indexAction() {
-		$this->view->assign('tasks', $this->taskRepository->findAll());
+		$this->view->assign('tags', $this->tagRepository->findAll());
 	}
 
 	/**
-	 * Form for a new Task
+	 * New
 	 *
-	 * @param Tx_Elements_Domain_Model_Task $newTask
+	 * @param Tx_Elements_Domain_Model_Tag $newTag
 	 * @return void
 	 */
-	public function newAction(Tx_Elements_Domain_Model_Task $newTask = NULL) {
-		$this->view->assign('newTask', $newTask);
+	public function newAction(Tx_Elements_Domain_Model_Tag $newTag = NULL) {
+		$this->view->assign('newTag', $newTag);
 	}
 
 	/**
-	 * Create a task
+	 * Create
 	 *
-	 * @param Tx_Elements_Domain_Model_Task $task
+	 * @param Tx_Elements_Domain_Model_Tag $tag
 	 * @return void
 	 */
-	public function createAction(Tx_Elements_Domain_Model_Task $task) {
-		$this->taskRepository->add($task);
+	public function createAction(Tx_Elements_Domain_Model_Tag $tag) {
+		$this->tagRepository->add($tag);
 		$this->redirect('index');
 	}
 
 	/**
-	 * Delete the task
-	 *
-	 * @param Tx_Elements_Domain_Model_Task $task
+	 * Delete
+	 * 
+	 * @param Tx_Elements_Domain_Model_Tag $tag
 	 * @return void
 	 */
-	public function deleteAction(Tx_Elements_Domain_Model_Task $task) {
-		$this->taskRepository->remove($task);
-		$this->redirect('index');
+	public function deleteAction(Tx_Elements_Domain_Model_Tag $tag) {
+		$this->tagRepository->remove($tag);
 	}
+		
 
 }
 ?>

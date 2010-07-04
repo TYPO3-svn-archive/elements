@@ -23,8 +23,10 @@
  ***************************************************************/
 
 /**
- * Task-Controller
+ * A tag.
  *
+ * @entity
+ * @scope prototype
  * @version $Id$
  * @package TYPO3
  * @subpackage Tx_Elements
@@ -32,63 +34,91 @@
  * @author Stefan Isak <stefanisak@gmail.com>
  * @author Andreas Lappe <nd@off-pist.de>
  */
-class Tx_Elements_Controller_TaskController extends Tx_Elements_MVC_Controller_RESTController {
+class Tx_Elements_Domain_Model_Tag extends Tx_Extbase_DomainObject_AbstractEntity { 
 
 	/**
-	 * @var Tx_Elements_Domain_Repository_TaskRepository
+	 * @var string
 	 */
-	protected $taskRepository;
+	protected $uuid;
 
 	/**
-	 * Init
+	 * @var string
+	 */
+	protected $name;
+
+	/**
+	 * @var Tx_Elements_Domain_Model_User
+	 */
+	protected $user;
+
+	/**
+	 * Constructor
 	 *
 	 * @param void
 	 * @return void
 	 */
-	public function initializeAction() {
-		$this->taskRepository = t3lib_div::makeInstance('Tx_Elements_Domain_Repository_TaskRepository');
+	public function __construct() {
+		$this->uuid = Tx_Elements_Utility_Uuid::generateUuid();
 	}
 
 	/**
-	 * Index
+	 * Set uuid
+	 *
+	 * @param string $uuid
+	 * @return void
+	 */
+	public function setUuid($uuid) {
+		$this->uuid = $uuid;
+	}
+
+	/**
+	 * Get uuid
 	 *
 	 * @param void
 	 * @return string
 	 */
-	public function indexAction() {
-		$this->view->assign('tasks', $this->taskRepository->findAll());
+	public function getUuid() {
+		return $this->uuid;
 	}
 
 	/**
-	 * Form for a new Task
-	 *
-	 * @param Tx_Elements_Domain_Model_Task $newTask
+	 * Set name
+	 * 
+	 * @param string $name
 	 * @return void
 	 */
-	public function newAction(Tx_Elements_Domain_Model_Task $newTask = NULL) {
-		$this->view->assign('newTask', $newTask);
+	public function setName($name) {
+		$this->name = $name;
 	}
 
 	/**
-	 * Create a task
+	 * Get name
 	 *
-	 * @param Tx_Elements_Domain_Model_Task $task
-	 * @return void
+	 * @param void
+	 * @return string
 	 */
-	public function createAction(Tx_Elements_Domain_Model_Task $task) {
-		$this->taskRepository->add($task);
-		$this->redirect('index');
+	public function getName() {
+		return $this->name;
 	}
 
 	/**
-	 * Delete the task
+	 * Set user
 	 *
-	 * @param Tx_Elements_Domain_Model_Task $task
+	 * @param Tx_Elements_Domain_Model_User $user
 	 * @return void
 	 */
-	public function deleteAction(Tx_Elements_Domain_Model_Task $task) {
-		$this->taskRepository->remove($task);
-		$this->redirect('index');
+	public function setUser(Tx_Elements_Domain_Model_User $user) {
+		$this->user = $user;
+	}
+
+	/**
+	 * Get user
+	 *
+	 * @param void
+	 * @return Tx_Elements_Domain_Model_User
+	 */
+	public function getUser() {
+		return $this->user;
 	}
 
 }
