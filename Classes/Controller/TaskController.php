@@ -77,7 +77,7 @@ class Tx_Elements_Controller_TaskController extends Tx_Elements_MVC_Controller_R
 	 */
 	public function createAction(Tx_Elements_Domain_Model_Task $task) {
 		$this->taskRepository->add($task);
-		$this->redirect('index');
+	//	$this->redirect('index');
 	}
 
 	/**

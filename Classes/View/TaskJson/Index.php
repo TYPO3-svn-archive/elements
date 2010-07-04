@@ -23,10 +23,8 @@
  ***************************************************************/
 
 /**
- * A basic task.
+ * Render JSON
  *
- * @entity
- * @scope prototype
  * @version $Id:$
  * @package TYPO3
  * @subpackage Tx_Elements
@@ -34,64 +32,31 @@
  * @author Stefan Isak <stefanisak@gmail.com>
  * @author Andreas Lappe <nd@off-pist.de>
  */
-class Tx_Elements_Domain_Model_Task extends Tx_Extbase_DomainObject_AbstractEntity { 
+class Tx_Elements_View_TaskJson_Index extends Tx_Extbase_MVC_View_AbstractView {
 
 	/**
-	 * @var string
-	 */
-	protected $uuid;
-
-	/**
-	 * @var string
-	 */
-	protected $taskContent;
-
-	/**
-	 * Constructor
+	 * Render 
 	 *
 	 * @param void
+	 * @return string JSON
+	 */
+	public function render() {
+		$result = Array();
+		foreach($this->tasks as $task) {
+			$result[] = Tx_Elements_Utility_Json::getObjectAsArray($task);
+		}
+		return json_encode($result, JSON_FORCE_OBJECT);
+	}
+
+	/**
+	 * Why is this one not inherited?
+	 *
+	 * @param string $name
+	 * @param mixed $value
 	 * @return void
 	 */
-	public function __construct() {
-		$this->uuid = Tx_Elements_Utility_Uuid::generateUuid();
-	}
-
-	/**
-	 * Get UUID
-	 *
-	 * @param void
-	 * @return string
-	 */
-	public function getUuid() {
-		return $this->uuid;
-	}
-
-	/**
-	 * Set taskContent
-	 *
-	 * @param string $taskContent
-	 * @return void
-	 */
-	public function setTaskContent($taskContent) {
-		$this->taskContent = $taskContent;
-	}
-
-	/**
-	 * Get taskContent
-	 *
-	 * @param void
-	 * @return string
-	 */
-	public function getTaskContent() {
-		return $this->taskContent;
-	}
-
-	/**
-	 * Get className
-	 *
-	 */
-	public function getClassName() {
-		return get_class($this);
+	public function assign($name, $value) {
+		$this->$name = $value;
 	}
 
 }

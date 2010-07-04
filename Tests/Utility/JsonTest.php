@@ -23,10 +23,8 @@
  ***************************************************************/
 
 /**
- * A basic task.
+ * Test some JSON-related methods
  *
- * @entity
- * @scope prototype
  * @version $Id:$
  * @package TYPO3
  * @subpackage Tx_Elements
@@ -34,65 +32,25 @@
  * @author Stefan Isak <stefanisak@gmail.com>
  * @author Andreas Lappe <nd@off-pist.de>
  */
-class Tx_Elements_Domain_Model_Task extends Tx_Extbase_DomainObject_AbstractEntity { 
+class Tx_Elements_Utility_JsonTest extends Tx_Extbase_BaseTestCase {
 
-	/**
-	 * @var string
-	 */
-	protected $uuid;
+	protected $exampleObject;
 
-	/**
-	 * @var string
-	 */
-	protected $taskContent;
-
-	/**
-	 * Constructor
-	 *
-	 * @param void
-	 * @return void
-	 */
-	public function __construct() {
-		$this->uuid = Tx_Elements_Utility_Uuid::generateUuid();
+	public function setUp() {
+		$this->exampleObject = t3lib_div::makeInstance('Tx_Extbase_Domain_Model_FrontendUser');
+		$this->exampleObject->setName('Elements Conversion Test');
 	}
 
 	/**
-	 * Get UUID
 	 *
-	 * @param void
-	 * @return string
+	 * @test
 	 */
-	public function getUuid() {
-		return $this->uuid;
+	public function testObjectToArrayConversion() {
+		$correctOutput = '{"username":"","password":"","usergroups":{},"name":"Elements Conversion Test","firstName":null,"middleName":null,"lastName":null,"address":"","telephone":"","fax":"","email":"","lockToDomain":"","title":"","zip":"","city":"","country":"","www":"","company":"","image":"","lastLogin":null,"isOnline":"","uid":null}';
+
+		$this->assertEquals($correctOutput, json_encode(Tx_Elements_Utility_Json::getObjectAsArray($this->exampleObject), JSON_FORCE_OBJECT));
 	}
 
-	/**
-	 * Set taskContent
-	 *
-	 * @param string $taskContent
-	 * @return void
-	 */
-	public function setTaskContent($taskContent) {
-		$this->taskContent = $taskContent;
-	}
-
-	/**
-	 * Get taskContent
-	 *
-	 * @param void
-	 * @return string
-	 */
-	public function getTaskContent() {
-		return $this->taskContent;
-	}
-
-	/**
-	 * Get className
-	 *
-	 */
-	public function getClassName() {
-		return get_class($this);
-	}
 
 }
 ?>

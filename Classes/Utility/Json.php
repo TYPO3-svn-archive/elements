@@ -23,10 +23,8 @@
  ***************************************************************/
 
 /**
- * A basic task.
+ * Helper class for JSON-related output/input
  *
- * @entity
- * @scope prototype
  * @version $Id:$
  * @package TYPO3
  * @subpackage Tx_Elements
@@ -34,64 +32,26 @@
  * @author Stefan Isak <stefanisak@gmail.com>
  * @author Andreas Lappe <nd@off-pist.de>
  */
-class Tx_Elements_Domain_Model_Task extends Tx_Extbase_DomainObject_AbstractEntity { 
+class Tx_Elements_Utility_Json {
 
 	/**
-	 * @var string
-	 */
-	protected $uuid;
-
-	/**
-	 * @var string
-	 */
-	protected $taskContent;
-
-	/**
-	 * Constructor
+	 * Get all methods starting with get* as they should be
+	 * public getters, add the appropriate property to our array
+	 * and set the value to the result of the get* method.
 	 *
-	 * @param void
-	 * @return void
+	 * @param mixed $object
+	 * @return array
 	 */
-	public function __construct() {
-		$this->uuid = Tx_Elements_Utility_Uuid::generateUuid();
-	}
-
-	/**
-	 * Get UUID
-	 *
-	 * @param void
-	 * @return string
-	 */
-	public function getUuid() {
-		return $this->uuid;
-	}
-
-	/**
-	 * Set taskContent
-	 *
-	 * @param string $taskContent
-	 * @return void
-	 */
-	public function setTaskContent($taskContent) {
-		$this->taskContent = $taskContent;
-	}
-
-	/**
-	 * Get taskContent
-	 *
-	 * @param void
-	 * @return string
-	 */
-	public function getTaskContent() {
-		return $this->taskContent;
-	}
-
-	/**
-	 * Get className
-	 *
-	 */
-	public function getClassName() {
-		return get_class($this);
+	static public function getObjectAsArray($object) {
+		$publicObject = Array();
+		$methods = get_class_methods(get_class($object));
+		foreach($methods as $method) {
+			if(preg_match('/^get.*/', $method)) {
+				$propertyName = lcfirst(preg_replace('/^get(.*)$/', '\1', $method));
+				$publicObject[$propertyName] = $object->$method();
+			}
+		}
+		return $publicObject;
 	}
 
 }

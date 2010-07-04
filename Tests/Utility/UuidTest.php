@@ -21,12 +21,9 @@
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-
 /**
- * A basic task.
+ * Test the generation of UUIDs
  *
- * @entity
- * @scope prototype
  * @version $Id:$
  * @package TYPO3
  * @subpackage Tx_Elements
@@ -34,65 +31,15 @@
  * @author Stefan Isak <stefanisak@gmail.com>
  * @author Andreas Lappe <nd@off-pist.de>
  */
-class Tx_Elements_Domain_Model_Task extends Tx_Extbase_DomainObject_AbstractEntity { 
+class Tx_Elements_Utility_UuidTest extends Tx_Extbase_BaseTestCase {
 
 	/**
-	 * @var string
-	 */
-	protected $uuid;
-
-	/**
-	 * @var string
-	 */
-	protected $taskContent;
-
-	/**
-	 * Constructor
+	 * Always 36
 	 *
-	 * @param void
-	 * @return void
+	 * @test
 	 */
-	public function __construct() {
-		$this->uuid = Tx_Elements_Utility_Uuid::generateUuid();
+	public function testUuidLength() {
+		$this->assertEquals(36, strlen(Tx_Elements_Utility_Uuid::generateUuid()));
 	}
-
-	/**
-	 * Get UUID
-	 *
-	 * @param void
-	 * @return string
-	 */
-	public function getUuid() {
-		return $this->uuid;
-	}
-
-	/**
-	 * Set taskContent
-	 *
-	 * @param string $taskContent
-	 * @return void
-	 */
-	public function setTaskContent($taskContent) {
-		$this->taskContent = $taskContent;
-	}
-
-	/**
-	 * Get taskContent
-	 *
-	 * @param void
-	 * @return string
-	 */
-	public function getTaskContent() {
-		return $this->taskContent;
-	}
-
-	/**
-	 * Get className
-	 *
-	 */
-	public function getClassName() {
-		return get_class($this);
-	}
-
 }
 ?>

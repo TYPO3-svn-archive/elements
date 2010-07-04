@@ -11,3 +11,16 @@ plugin.tx_elements {
         layoutRootPath = {$plugin.tx_elements.view.layoutRootPath}
     }
 }
+
+elements_json = PAGE
+elements_json {
+	typeNum = 1278258337
+	config {
+		xhtml_cleaning = 0
+		admPanel = 0
+		disableAllHeaderCode = 1
+		additionalHeaders = Content-type:application/json
+	}
+	settings < plugin.tx_elements.settings
+	10 < tt_content.list.20.elements_json
+}

@@ -23,10 +23,9 @@
  ***************************************************************/
 
 /**
- * A basic task.
  *
- * @entity
- * @scope prototype
+ * Small helper to generate UUIDs
+ *
  * @version $Id:$
  * @package TYPO3
  * @subpackage Tx_Elements
@@ -34,65 +33,32 @@
  * @author Stefan Isak <stefanisak@gmail.com>
  * @author Andreas Lappe <nd@off-pist.de>
  */
-class Tx_Elements_Domain_Model_Task extends Tx_Extbase_DomainObject_AbstractEntity { 
+class Tx_Elements_Utility_Uuid {
 
 	/**
-	 * @var string
-	 */
-	protected $uuid;
-
-	/**
-	 * @var string
-	 */
-	protected $taskContent;
-
-	/**
-	 * Constructor
+	 * Generate a uuid
 	 *
-	 * @param void
-	 * @return void
-	 */
-	public function __construct() {
-		$this->uuid = Tx_Elements_Utility_Uuid::generateUuid();
-	}
-
-	/**
-	 * Get UUID
+	 * Taken from http://de3.php.net/manual/en/function.uniqid.php for now.
 	 *
 	 * @param void
 	 * @return string
 	 */
-	public function getUuid() {
-		return $this->uuid;
+	static public function generateUuid() {
+		return sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
+			// 32 bits for "time_low"
+			mt_rand(0, 0xffff), mt_rand(0, 0xffff),
+			// 16 bits for "time_mid"
+			mt_rand(0, 0xffff),
+			// 16 bits for "time_hi_and_version",
+			// four most significant bits holds version number 4
+			mt_rand(0, 0x0fff) | 0x4000,
+			// 16 bits, 8 bits for "clk_seq_hi_res",
+			// 8 bits for "clk_seq_low",
+			// two most significant bits holds zero and one for variant DCE1.1
+			mt_rand(0, 0x3fff) | 0x8000,
+			// 48 bits for "node"
+			mt_rand(0, 0xffff), mt_rand(0, 0xffff), mt_rand(0, 0xffff)
+		);
 	}
-
-	/**
-	 * Set taskContent
-	 *
-	 * @param string $taskContent
-	 * @return void
-	 */
-	public function setTaskContent($taskContent) {
-		$this->taskContent = $taskContent;
-	}
-
-	/**
-	 * Get taskContent
-	 *
-	 * @param void
-	 * @return string
-	 */
-	public function getTaskContent() {
-		return $this->taskContent;
-	}
-
-	/**
-	 * Get className
-	 *
-	 */
-	public function getClassName() {
-		return get_class($this);
-	}
-
 }
 ?>

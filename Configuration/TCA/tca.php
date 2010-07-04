@@ -53,6 +53,16 @@ $TCA['tx_elements_domain_model_task'] = Array(
 				'type' => 'check'
 			)
 		),
+		'uuid' => Array(
+			'exclude' => 0,
+			'label' => 'LLL:EXT:elements/Resources/Private/Language/locallang_db.xml:tx_elements_domain_model_task.uuid',
+			'config' => Array(
+				'type' => 'input',
+				'size' => '20',
+				'eval' => 'trim,required',
+				'max' => 140,
+			)
+		),
 		'task_content' => Array(
 			'exclude' => 0,
 			'label' => 'LLL:EXT:elements/Resources/Private/Language/locallang_db.xml:tx_elements_domain_model_task.taskContent',

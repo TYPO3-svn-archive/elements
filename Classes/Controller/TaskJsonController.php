@@ -23,10 +23,9 @@
  ***************************************************************/
 
 /**
- * A basic task.
+ * Task-Controller, but accepting JSON input and only
+ * giving JSON output.
  *
- * @entity
- * @scope prototype
  * @version $Id:$
  * @package TYPO3
  * @subpackage Tx_Elements
@@ -34,65 +33,8 @@
  * @author Stefan Isak <stefanisak@gmail.com>
  * @author Andreas Lappe <nd@off-pist.de>
  */
-class Tx_Elements_Domain_Model_Task extends Tx_Extbase_DomainObject_AbstractEntity { 
+class Tx_Elements_Controller_TaskJsonController extends Tx_Elements_Controller_TaskController {
 
-	/**
-	 * @var string
-	 */
-	protected $uuid;
-
-	/**
-	 * @var string
-	 */
-	protected $taskContent;
-
-	/**
-	 * Constructor
-	 *
-	 * @param void
-	 * @return void
-	 */
-	public function __construct() {
-		$this->uuid = Tx_Elements_Utility_Uuid::generateUuid();
-	}
-
-	/**
-	 * Get UUID
-	 *
-	 * @param void
-	 * @return string
-	 */
-	public function getUuid() {
-		return $this->uuid;
-	}
-
-	/**
-	 * Set taskContent
-	 *
-	 * @param string $taskContent
-	 * @return void
-	 */
-	public function setTaskContent($taskContent) {
-		$this->taskContent = $taskContent;
-	}
-
-	/**
-	 * Get taskContent
-	 *
-	 * @param void
-	 * @return string
-	 */
-	public function getTaskContent() {
-		return $this->taskContent;
-	}
-
-	/**
-	 * Get className
-	 *
-	 */
-	public function getClassName() {
-		return get_class($this);
-	}
 
 }
 ?>

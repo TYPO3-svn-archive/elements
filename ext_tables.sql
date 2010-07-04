@@ -5,6 +5,7 @@ CREATE TABLE tx_elements_domain_model_task (
 	uid int(11) unsigned DEFAULT '0' NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 
+	uuid varchar(36) DEFAULT '' NOT NULL,
 	task_content varchar(160) DEFAULT '' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
