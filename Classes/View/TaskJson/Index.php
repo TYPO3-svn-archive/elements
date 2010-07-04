@@ -45,7 +45,7 @@ class Tx_Elements_View_TaskJson_Index extends Tx_Extbase_MVC_View_AbstractView {
 		foreach($this->tasks as $task) {
 			$result[] = Tx_Elements_Utility_Json::getObjectAsArray($task);
 		}
-		return json_encode($result, JSON_FORCE_OBJECT);
+		return json_encode($result);
 	}
 
 	/**
