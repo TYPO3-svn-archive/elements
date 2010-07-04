@@ -25,7 +25,7 @@
 /**
  * Test some JSON-related methods
  *
- * @version $Id:$
+ * @version $Id$
  * @package TYPO3
  * @subpackage Tx_Elements
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
