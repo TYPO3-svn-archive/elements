@@ -23,103 +23,33 @@
  ***************************************************************/
 
 /**
- * A tag.
+ * Service to e.g. get the current FE User
  *
- * @entity
- * @scope prototype
- * @version $Id$
+ * @version $Id:$
  * @package TYPO3
  * @subpackage Tx_Elements
  * @license http://opensource.org/licenses/gpl-license.php GNU Public License, version 2
  * @author Stefan Isak <stefanisak@gmail.com>
  * @author Andreas Lappe <nd@off-pist.de>
  */
-class Tx_Elements_Domain_Model_Tag extends Tx_Extbase_DomainObject_AbstractEntity { 
+class Tx_Elements_Service_UserService implements t3lib_Singleton {
 
 	/**
-	 * @var string
+	 * @var Tx_Extbase_Domain_Repository_FrontendUserRepository
 	 */
-	protected $uuid;
+	protected $frontendUserRepository;
 
 	/**
-	 * @var string
-	 */
-	protected $name;
-
-	/**
-	 * @var Tx_Extbase_Domain_Model_FrontendUser
-	 */
-	protected $user;
-
-	/**
-	 * Constructor
-	 *
-	 * @param void
-	 * @return void
-	 */
-	public function __construct() {
-		$this->uuid = Tx_Elements_Utility_Uuid::generateUuid();
-	}
-
-	/**
-	 * Set uuid
-	 *
-	 * @param string $uuid
-	 * @return void
-	 */
-	public function setUuid($uuid) {
-		$this->uuid = $uuid;
-	}
-
-	/**
-	 * Get uuid
-	 *
-	 * @param void
-	 * @return string
-	 */
-	public function getUuid() {
-		return $this->uuid;
-	}
-
-	/**
-	 * Set name
-	 * 
-	 * @param string $name
-	 * @return void
-	 */
-	public function setName($name) {
-		$this->name = $name;
-	}
-
-	/**
-	 * Get name
-	 *
-	 * @param void
-	 * @return string
-	 */
-	public function getName() {
-		return $this->name;
-	}
-
-	/**
-	 * Set user
-	 *
-	 * @param Tx_Extbase_Domain_Model_FrontendUser $user
-	 * @return void
-	 */
-	public function setUser(Tx_Extbase_Domain_Model_FrontendUser $user) {
-		$this->user = $user;
-	}
-
-	/**
-	 * Get user
+	 * Get current FE-User
 	 *
 	 * @param void
 	 * @return Tx_Extbase_Domain_Model_FrontendUser
 	 */
-	public function getUser() {
-		return $this->user;
+	public function getCurrentFrontendUser() {
+		$this->frontendUserRepository = t3lib_div::makeInstance('Tx_Extbase_Domain_Repository_FrontendUserRepository');
+		return $this->frontendUserRepository->findOneByUid($GLOBALS['TSFE']->fe_user->user['uid']);
 	}
+
 
 }
 ?>

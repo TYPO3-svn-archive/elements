@@ -40,6 +40,11 @@ class Tx_Elements_Controller_TaskController extends Tx_Elements_MVC_Controller_R
 	protected $taskRepository;
 
 	/**
+	 * @var Tx_Elements_Service_UserService
+	 */
+	protected $userService;
+
+	/**
 	 * Init
 	 *
 	 * @param void
@@ -47,6 +52,7 @@ class Tx_Elements_Controller_TaskController extends Tx_Elements_MVC_Controller_R
 	 */
 	public function initializeAction() {
 		$this->taskRepository = t3lib_div::makeInstance('Tx_Elements_Domain_Repository_TaskRepository');
+		$this->userService = t3lib_div::makeInstance('Tx_Elements_Service_UserService');
 	}
 
 	/**
@@ -56,7 +62,7 @@ class Tx_Elements_Controller_TaskController extends Tx_Elements_MVC_Controller_R
 	 * @return string
 	 */
 	public function indexAction() {
-		$this->view->assign('tasks', $this->taskRepository->findAll());
+		$this->view->assign('tasks', $this->taskRepository->findByUser($this->userService->getCurrentFrontendUser()));
 	}
 
 	/**
@@ -76,6 +82,7 @@ class Tx_Elements_Controller_TaskController extends Tx_Elements_MVC_Controller_R
 	 * @return void
 	 */
 	public function createAction(Tx_Elements_Domain_Model_Task $task) {
+		$task->setUser($this->userService->getCurrentFrontendUser());
 		$this->taskRepository->add($task);
 		$this->redirect('index');
 	}

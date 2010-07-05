@@ -47,6 +47,11 @@ class Tx_Elements_Domain_Model_Task extends Tx_Extbase_DomainObject_AbstractEnti
 	protected $taskContent;
 
 	/**
+	 * @var Tx_Extbase_Domain_Model_FrontendUser
+	 */
+	protected $user;
+
+	/**
 	 * Constructor
 	 *
 	 * @param void
@@ -97,6 +102,26 @@ class Tx_Elements_Domain_Model_Task extends Tx_Extbase_DomainObject_AbstractEnti
 	 */
 	public function getTaskContent() {
 		return $this->taskContent;
+	}
+
+	/**
+	 * Set user
+	 *
+	 * @param Tx_Extbase_Domain_Model_FrontendUser $user
+	 * @return void
+	 */
+	public function setUser(Tx_Extbase_Domain_Model_FrontendUser $task) {
+		$this->user = $user;
+	}
+
+	/**
+	 * Get User
+	 *
+	 * @param void
+	 * @return Tx_Extbase_Domain_Model_FrontendUser
+	 */
+	public function getUser() {
+		return $this->user;
 	}
 
 }

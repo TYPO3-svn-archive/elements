@@ -73,9 +73,19 @@ $TCA['tx_elements_domain_model_task'] = Array(
 				'max' => 140,
 			)
 		),
+		'user' => Array(
+			'exclude' => 0,
+			'label' => 'LLL:EXT:elements/Resources/Private/Language/locallang_db.xml:tx_elements_domain_model_task.user',
+			'config' => Array(
+				'type' => 'input',
+				'eval' => 'trim,required',
+				'size' => '20',
+				'max' => 140,
+			)
+		),
 	),
 	'types' => array(
-		'1' => array('showitem' => 'hidden')
+		'1' => array('showitem' => 'hidden, task_content, user')
 	),
 	'palettes' => array(
 		'1' => array('showitem' => '')
@@ -166,7 +176,7 @@ $TCA['tx_elements_domain_model_tag'] = Array(
 		),
 	),
 	'types' => array(
-		'1' => array('showitem' => 'hidden')
+		'1' => array('showitem' => 'hidden, name, user')
 	),
 	'palettes' => array(
 		'1' => array('showitem' => '')

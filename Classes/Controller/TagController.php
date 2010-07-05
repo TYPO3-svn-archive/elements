@@ -35,6 +35,11 @@
 class Tx_Elements_Controller_TagController extends Tx_Elements_MVC_Controller_RESTController {
 
 	/**
+	 * @var Tx_Elements_Service_UserService
+	 */
+	protected $userService;
+
+	/**
 	 * @var Tx_Elements_Domain_Repository_TagRepository
 	 */
 	protected $tagRepository;
@@ -46,6 +51,7 @@ class Tx_Elements_Controller_TagController extends Tx_Elements_MVC_Controller_RE
 	 * @return void
 	 */
 	public function initializeAction() {
+		$this->userService = t3lib_div::makeInstance('Tx_Elements_Service_UserService');
 		$this->tagRepository = t3lib_div::makeInstance('Tx_Elements_Domain_Repository_TagRepository');
 	}
 
@@ -56,7 +62,7 @@ class Tx_Elements_Controller_TagController extends Tx_Elements_MVC_Controller_RE
 	 * @return void
 	 */
 	public function indexAction() {
-		$this->view->assign('tags', $this->tagRepository->findAll());
+		$this->view->assign('tags', $this->tagRepository->findByUser($this->userService->getCurrentFrontendUser()));
 	}
 
 	/**
@@ -76,6 +82,7 @@ class Tx_Elements_Controller_TagController extends Tx_Elements_MVC_Controller_RE
 	 * @return void
 	 */
 	public function createAction(Tx_Elements_Domain_Model_Tag $tag) {
+		$tag->setUser($this->userService->getCurrentFrontendUser());
 		$this->tagRepository->add($tag);
 		$this->redirect('index');
 	}
